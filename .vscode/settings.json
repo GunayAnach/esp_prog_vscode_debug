@@ -15,4 +15,10 @@
     "esp_toolchain_path": "${config:esp_toolchain_root}/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin",
 
     "esp_dev_env_path": "${config:esp_idf_tools}:${config:esp_binutils_path}:${config:esp_openocd_path}:${config:esp_python_path}:${config:esp_toolchain_path}:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "idf.port": "/dev/cu.usbserial-141401",
+    "idf.adapterTargetName": "esp32",
+    "idf.openOcdConfigs": [
+        "interface/ftdi/esp32_devkitj_v1.cfg",
+        "target/esp32.cfg"
+    ],
 }

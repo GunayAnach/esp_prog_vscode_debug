@@ -6,10 +6,7 @@
         {
             "label": "Build Firmware",
             "type": "shell",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "group": "build",
             "options": {
                 "cwd": "${workspaceFolder}",
                 "env": {
@@ -17,7 +14,7 @@
                     "PATH": "${config:esp_dev_env_path}:${env:PATH}"
                 }
             },
-            "command": "idf.py build",
+            "command": ". ~/esp/esp-idf/add_path.sh; /usr/bin/python3 ~/esp/esp-idf/tools/idf.py build",
             "problemMatcher": [
                 "$gcc"
             ]
@@ -32,14 +29,14 @@
                     "PATH": "${config:esp_dev_env_path}:${env:PATH}"
                 }
             },
-            "command": "idf.py fullclean",
+            "command": ". ~/esp/esp-idf/add_path.sh; /usr/bin/python3 ~/esp/esp-idf/tools/idf.py fullclean",
             "problemMatcher": []
         },
         {
             "label": "Manually remove the `build/` Directory",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}",
+                "cwd": "${workspaceFolder}"
             },
             "command": "rm -rf build/",
             "problemMatcher": []
@@ -66,7 +63,7 @@
                     "PATH": "${config:esp_dev_env_path}:${env:PATH}"
                 }
             },
-            "command": "idf.py flash",
+            "command": ". ~/esp/esp-idf/add_path.sh; /usr/bin/python3 ~/esp/esp-idf/tools/idf.py flash",
             "problemMatcher": []
         },
         {
@@ -79,7 +76,7 @@
                     "PATH": "${config:esp_dev_env_path}:${env:PATH}"
                 }
             },
-            "command": "idf.py monitor",
+            "command": ". ~/esp/esp-idf/add_path.sh; /usr/bin/python3 ~/esp/esp-idf/tools/idf.py monitor",
             "problemMatcher": []
         },
         {
@@ -92,7 +89,7 @@
                     "PATH": "${config:esp_dev_env_path}:${env:PATH}"
                 }
             },
-            "command": "idf.py flash monitor",
+            "command": ". ~/esp/esp-idf/add_path.sh; /usr/bin/python3 ~/esp/esp-idf/tools/idf.py flash monitor",
             "problemMatcher": []
         },
         {
@@ -118,8 +115,12 @@
                     "PATH": "${config:esp_dev_env_path}:${env:PATH}"
                 }
             },
-            "command": "idf.py menuconfig",
-            "problemMatcher": []
-        },
+            "command": ". ~/esp/esp-idf/add_path.sh; /usr/bin/python3 ~/esp/esp-idf/tools/idf.py menuconfig",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
     ]
 }

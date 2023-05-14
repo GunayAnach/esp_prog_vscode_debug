@@ -52,6 +52,20 @@ Publisher: Microsoft
 VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools
 ```
 
+### Install the ESP-IDF Toolchain
+
+The configuration instructions below assume you have already installed the
+ESP-IDF toolchain. Instructions for installing the toolchain can be found here.
+
+[Set Up The Tools](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#step-3-set-up-the-tools)
+
+[Set Up Toolchain on MacOS](https://docs.espressif.com/projects/esp-idf/en/v3.3/get-started-cmake/macos-setup.html)
+
+
+```sh
+brew install cmake ninja ccache
+```
+
 ### Clone the ESP-IDF Repo
 
 If you don't already have it you will need to clone the ESP-IDF repo to a location
@@ -59,14 +73,9 @@ of your choice on your machine. You will need the path to this location later on
 
 ```sh
 git clone --recursive https://github.com/espressif/esp-idf.git --branch v5.0
+
+python3 -m pip install --user -r ~/esp/esp-idf/requirements.txt 
 ```
-
-### Install the ESP-IDF Toolchain
-
-The configuration instructions below assume you have already installed the
-ESP-IDF toolchain. Instructions for installing the toolchain can be found here.
-
-[Set Up The Tools](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#step-3-set-up-the-tools)
 
 ### Python 2 Dependencies
 
@@ -79,6 +88,17 @@ On Linux, you may install `libpython2.7` with the following command.
 ```sh
 sudo apt-get install libpython2.7
 ```
+
+## Check MenuConfig is available
+
+```sh
+  python ~/esp/esp-idf/tools/idf.py menuconfig
+```
+
+## Set ENV PATH
+
+[Setting paths](https://docs.espressif.com/projects/esp-idf/en/v3.3/get-started-cmake/add-idf_path-to-profile.html)
+
 
 ## Configuration
 

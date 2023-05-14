@@ -3,6 +3,10 @@
 
 # Launch development environment
 # docker run --device /dev/bus/usb/ --interactive --rm --tty --volume "$(pwd)":/host-volume/ esp-dev-env
+# docker run --device /dev/cu.usbserial-14140 --privileged --interactive --rm --tty --volume "$(pwd)":/host-volume/ esp-dev-env
+
+# SSH into the docker
+# docker run --name esp-idf-1 -i -t esp-dev-env
 
 # _**NOTE:** In order to utilize DFU and debugging functionality, you must
 # install (copy) the `.rules` file related to your debugging probe into the
@@ -67,6 +71,7 @@ RUN ["dash", "-c", "\
      python3-setuptools \
      python3-venv \
      udev \
+     usbutils \
      wget \
  && apt-get clean \
  && apt-get purge \
@@ -91,4 +96,9 @@ ENV IDF_TARGET="esp32"
 RUN ["dash", "-c", "\
     cd ./esp/esp-idf \
  && ./install.sh ${IDF_TARGET} \
+ && . ./export.sh \
 "]
+
+# Step 4. Install Rules for the specific Debugger, other debuugers can be found here
+# https://github.com/makercrew/rules.d
+COPY etc/udev/rules.d/98-espprog-dual-rs232-hs.rules /etc/udev/rules.d/98-espprog-dual-rs232-hs.rules
